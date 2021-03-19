@@ -1,54 +1,54 @@
 <script>
-import soundServiceCreator from '@/services/sound.service';
-import Tuner from './components/Tuner.vue';
-import SliderSwitch from './components/SliderSwitch.vue';
+import soundServiceCreator from '@/services/sound.service'
+import Tuner from './components/Tuner'
+import SliderSwitch from './components/SliderSwitch'
 
-const soundService = soundServiceCreator();
+const soundService = soundServiceCreator()
 
 export default {
   name: 'App',
   components: {
     SliderSwitch,
-    Tuner,
+    Tuner
   },
-  data() {
+  data () {
     return {
       soundService,
       pitch: null,
       note: null,
       detune: null,
-      isPlaying: false,
-    };
+      isPlaying: false
+    }
   },
-  mounted() {
-    soundService.on('acUpdate', (val) => {
-      this.setResults(val);
-    });
-    soundService.on('statusUpdate', (val) => {
-      this.isPlaying = val;
-    });
+  mounted () {
+    soundService.on('acUpdate', val => {
+      this.setResults(val)
+    })
+    soundService.on('statusUpdate', val => {
+      this.isPlaying = val
+    })
   },
   methods: {
-    toggleInputHandler() {
+    toggleInputHandler () {
       if (this.isPlaying) {
-        this.soundService.stop();
+        this.soundService.stop()
       } else {
-        this.soundService.start();
+        this.soundService.start()
       }
     },
-    setResults(ac) {
+    setResults (ac) {
       if (ac === -1) {
-        this.pitch = null;
-        this.note = null;
-        this.detune = null;
+        this.pitch = null
+        this.note = null
+        this.detune = null
       } else {
-        this.pitch = Math.round(ac);
-        this.note = soundService.noteFromPitch(this.pitch);
-        this.detune = soundService.centsOffFromPitch(this.pitch, this.note);
+        this.pitch = Math.round(ac)
+        this.note = soundService.noteFromPitch(this.pitch)
+        this.detune = soundService.centsOffFromPitch(this.pitch, this.note)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <template>
@@ -57,22 +57,20 @@ export default {
       <nav>LOGO</nav>
     </header>
     <main>
-        <Tuner :pitch='pitch' :note='note' :detune='detune' :isPlaying='isPlaying' />
-        <SliderSwitch class="switch" :isActive="isPlaying" @press-button="toggleInputHandler" />
+      <Tuner :pitch="pitch" :note="note" :detune="detune" :isPlaying="isPlaying" />
+      <SliderSwitch class="switch" :isActive="isPlaying" @press-button="toggleInputHandler" />
     </main>
     <footer>FOOTER</footer>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "./styles/design";
-
-$tuning-area-size: 400px;
+@import './styles/design';
 
 .container {
   position: relative;
   width: $tuning-area-size;
-  min-height: 100vh;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -83,5 +81,4 @@ $tuning-area-size: 400px;
   right: $s-xl;
   opacity: 0.5;
 }
-
 </style>

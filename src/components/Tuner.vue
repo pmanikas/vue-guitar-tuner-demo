@@ -1,37 +1,37 @@
 <script>
-import Detune from './Detune.vue';
+import Detune from './Detune.vue'
 
-const NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
 export default {
   name: 'Tunner',
   components: {
-    Detune,
+    Detune
   },
-  data() {
+  data () {
     return {
-      notes: NOTES,
-    };
+      notes: NOTES
+    }
   },
   props: {
     pitch: {
       type: Number,
-      default: null,
+      default: null
     },
     note: {
       type: Number,
-      default: null,
+      default: null
     },
     detune: {
       type: Number,
-      default: null,
+      default: null
     },
     isPlaying: {
       type: Boolean,
-      default: false,
-    },
-  },
-};
+      default: false
+    }
+  }
+}
 </script>
 
 <template>
@@ -44,10 +44,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@import "./../styles/design";
+@import './../styles/design';
 
 .tuningArea {
-  @include center;
+  position: relative;
   width: 100%;
   height: $tuning-area-size;
 }
@@ -67,23 +67,17 @@ export default {
     content: '';
     width: $tuning-area-size;
     height: $tuning-area-size;
-    background-image:
-      repeating-linear-gradient($c-white -1px 1px, transparent 1px 100%),
+    background-image: repeating-linear-gradient($c-white -1px 1px, transparent 1px 100%),
       repeating-linear-gradient(90deg, $c-white -1px 1px, transparent 1px 100%);
     background-size: ($tuning-area-size / 20) ($tuning-area-size / 20);
     opacity: 0.15;
-    animation: moveDown .3s infinite linear;
+    animation: moveDown 0.3s infinite linear;
     animation-play-state: paused;
   }
   &::after {
     @include fill;
     content: '';
-    background-image:
-    radial-gradient(
-      transparent,
-      transparent,
-      $c-cod-gray,
-    );
+    background-image: radial-gradient(transparent, transparent, transparent, $c-cod-gray 90%, $c-cod-gray 100%);
   }
 }
 

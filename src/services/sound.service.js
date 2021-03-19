@@ -1,96 +1,98 @@
-import Emitter from 'component-emitter';
-import { autoCorrelate } from '../algorithms/autoCorrelate.util';
+import Emitter from 'component-emitter'
+import { autoCorrelate } from '../algorithms/autoCorrelate'
 
 export default () => {
-  const events = Emitter({});
+  const events = Emitter({})
 
-  let audioContext = null;
-  let analyser = null;
-  let mediaStreamSource = null;
-  let stream = null;
-  let isPlaying = false;
+  let audioContext = null
+  let analyser = null
+  let mediaStreamSource = null
+  let stream = null
+  let isPlaying = false
 
   const on = (event, arg) => {
-    events.on(event, arg);
-  };
+    events.on(event, arg)
+  }
 
-  const off = (event) => {
-    events.off(event);
-  };
+  const off = event => {
+    events.off(event)
+  }
 
-  const emitAcUpdate = (ac) => {
-    events.emit('acUpdate', ac);
-  };
+  const emitAcUpdate = ac => {
+    events.emit('acUpdate', ac)
+  }
 
-  const emitStatusUpdate = (status) => {
-    events.emit('statusUpdate', status);
-  };
+  const emitStatusUpdate = status => {
+    events.emit('statusUpdate', status)
+  }
 
-  const errorHandler = (error) => {
-    console.error(error);
-  };
+  const errorHandler = error => {
+    console.error(error)
+  }
 
-  const buflen = 2048;
-  const buf = new Float32Array(buflen);
+  const buflen = 2048
+  const buf = new Float32Array(buflen)
 
-  const noteFromPitch = (frequency) => {
-    const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
-    return Math.round(noteNum) + 69;
-  };
+  const noteFromPitch = frequency => {
+    const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2))
+    return Math.round(noteNum) + 69
+  }
 
   // eslint-disable-next-line no-restricted-properties
-  const frequencyFromNoteNumber = (note) => 440 * Math.pow(2, (note - 69) / 12);
+  const frequencyFromNoteNumber = note => 440 * Math.pow(2, (note - 69) / 12)
 
-  // eslint-disable-next-line max-len
-  const centsOffFromPitch = (frequency, note) => Math.floor(1200 * (Math.log(frequency / frequencyFromNoteNumber(note)) / Math.log(2)));
+  const centsOffFromPitch = (frequency, note) =>
+    Math.floor(1200 * (Math.log(frequency / frequencyFromNoteNumber(note)) / Math.log(2)))
 
   const updatePitch = () => {
-    analyser.getFloatTimeDomainData(buf);
-    const ac = autoCorrelate(buf, audioContext.sampleRate);
-    emitAcUpdate(ac);
+    analyser.getFloatTimeDomainData(buf)
+    const ac = autoCorrelate(buf, audioContext.sampleRate)
+    emitAcUpdate(ac)
 
     if (!window.requestAnimationFrame) {
-      window.requestAnimationFrame = window.webkitRequestAnimationFrame;
+      window.requestAnimationFrame = window.webkitRequestAnimationFrame
     }
-    window.requestAnimationFrame(updatePitch);
-  };
+    window.requestAnimationFrame(updatePitch)
+  }
 
   const createStreamAudio = () => {
     // Create an AudioNode from the stream.
-    mediaStreamSource = audioContext.createMediaStreamSource(stream);
+    mediaStreamSource = audioContext.createMediaStreamSource(stream)
 
     // Connect it to the destination.
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
-    mediaStreamSource.connect(analyser);
-    updatePitch();
-  };
+    analyser = audioContext.createAnalyser()
+    analyser.fftSize = 2048
+    mediaStreamSource.connect(analyser)
+    updatePitch()
+  }
 
-  const getUserMedia = async (dictionary) => {
+  const getUserMedia = async dictionary => {
     try {
-      stream = await navigator.mediaDevices.getUserMedia(dictionary);
-      createStreamAudio(stream);
+      stream = await navigator.mediaDevices.getUserMedia(dictionary)
+      createStreamAudio(stream)
     } catch (e) {
-      errorHandler(`getUserMedia threw exception :${e}`);
+      errorHandler(`getUserMedia threw exception :${e}`)
     }
-  };
+  }
 
   const stop = () => {
-    stream.getTracks().forEach((track) => {
-      track.stop();
-    });
-    stream = null;
-    isPlaying = false;
-    emitStatusUpdate(isPlaying);
-  };
+    stream.getTracks().forEach(track => {
+      track.stop()
+    })
+    stream = null
+    isPlaying = false
+    emitStatusUpdate(isPlaying)
+  }
 
   const start = () => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const AudioContext = window.AudioContext || window.webkitAudioContext
     if (AudioContext) {
-      audioContext = new AudioContext();
+      audioContext = new AudioContext()
     } else {
-      errorHandler('Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox');
-      return;
+      errorHandler(
+        'Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox'
+      )
+      return
     }
     getUserMedia({
       audio: {
@@ -98,15 +100,15 @@ export default () => {
           googEchoCancellation: 'false',
           googAutoGainControl: 'true',
           googNoiseSuppression: 'false',
-          googHighpassFilter: 'false',
+          googHighpassFilter: 'false'
         },
-        optional: [],
-      },
+        optional: []
+      }
     }).then(() => {
-      isPlaying = true;
-      emitStatusUpdate(isPlaying);
-    });
-  };
+      isPlaying = true
+      emitStatusUpdate(isPlaying)
+    })
+  }
 
   return {
     on,
@@ -114,6 +116,6 @@ export default () => {
     stop,
     start,
     noteFromPitch,
-    centsOffFromPitch,
-  };
-};
+    centsOffFromPitch
+  }
+}

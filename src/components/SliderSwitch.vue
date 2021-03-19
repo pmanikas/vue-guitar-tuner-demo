@@ -4,22 +4,22 @@ export default {
   props: {
     isActive: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isRound: {
       type: Boolean,
-      default: true,
+      default: true
     },
     inactiveIcon: {
       type: [String, Boolean],
-      default: '',
+      default: ''
     },
     activeIcon: {
       type: [String, Boolean],
-      default: false,
-    },
-  },
-};
+      default: false
+    }
+  }
+}
 </script>
 
 <template>
@@ -29,7 +29,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@import "./../styles/design";
+@import './../styles/design';
 
 $slider-distance: 4px;
 $slider-size: 60px;
@@ -47,9 +47,9 @@ $slider-size: 60px;
     left: $slider-distance;
     width: ($slider-size / 2) - $slider-distance;
     height: ($slider-size / 2) - $slider-distance;
-    content: "";
+    content: '';
     background-color: $c-white;
-    transition: transform .35s ease-out;
+    transition: transform 0.35s ease-out;
     transform: translateX(0);
   }
 }

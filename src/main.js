@@ -1,6 +1,6 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import './registerServiceWorker';
-import './styles/style.scss';
+import { createApp } from 'vue'
+import App from './App.vue'
+import './registerServiceWorker'
+import './styles/style.scss'
 
-createApp(App).mount('#app');
+createApp(App).mount('#app')

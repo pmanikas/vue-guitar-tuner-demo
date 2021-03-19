@@ -1,5 +1,4 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/guitar-tuner/'
-    : '/',
-};
+  publicPath: process.env.NODE_ENV === 'production' ? '/guitar-tuner/' : '/',
+  lintOnSave: true
+}
