@@ -1,19 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ed74558fe0f61c55ba63",
-    "url": "/guitar-tuner/css/app.1985427b.css"
+    "revision": "5cb1d6cc77dc4543b03c",
+    "url": "/guitar-tuner/css/app.2566f75a.css"
   },
   {
-    "revision": "bbd9d6419f2e78f7b064c439b49df210",
-    "url": "/guitar-tuner/images/grid.png"
-  },
-  {
-    "revision": "da8f65d19337ee6ea8cc965524ca2e6a",
+    "revision": "d8a3e88222b1744b34aa2006d0f96297",
     "url": "/guitar-tuner/index.html"
   },
   {
-    "revision": "ed74558fe0f61c55ba63",
-    "url": "/guitar-tuner/js/app.42b128d6.js"
+    "revision": "5cb1d6cc77dc4543b03c",
+    "url": "/guitar-tuner/js/app.e071aa04.js"
   },
   {
     "revision": "1ef1a194a63e34486243",
