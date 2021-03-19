@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/guitar-tuner/precache-manifest.8bba75eaba0cdc0c9f97ff1c4109fe13.js"
+  "/guitar-tuner/precache-manifest.13f2f38aaa4f1b9009f9eeecf7066fa1.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-chords-detector"});
