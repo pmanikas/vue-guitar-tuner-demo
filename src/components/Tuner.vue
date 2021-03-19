@@ -68,9 +68,9 @@ export default {
     width: $tuning-area-size;
     height: $tuning-area-size;
     background-image:
-      repeating-linear-gradient($c-white 0px 1px, transparent 1px 100%),
-      repeating-linear-gradient(90deg, $c-white 0px 1px, transparent 1px 100%);
-    background-size: $tuning-area-size / 20 $tuning-area-size / 20;
+      repeating-linear-gradient($c-white -1px 1px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, $c-white -1px 1px, transparent 1px 100%);
+    background-size: ($tuning-area-size / 20) ($tuning-area-size / 20);
     opacity: 0.15;
     animation: moveDown .3s infinite linear;
     animation-play-state: paused;
