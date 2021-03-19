@@ -4,6 +4,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/guitar-tuner/css/app.1985427b.css"
   },
   {
+    "revision": "bbd9d6419f2e78f7b064c439b49df210",
+    "url": "/guitar-tuner/images/grid.png"
+  },
+  {
     "revision": "da8f65d19337ee6ea8cc965524ca2e6a",
     "url": "/guitar-tuner/index.html"
   },
