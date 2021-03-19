@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predeploy": "PUBLIC_URL=https://pmanikas.github.io/guitar-tuner npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
