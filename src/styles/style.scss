@@ -20,6 +20,24 @@ body {
   color: $c-silver;
 }
 
+.neon {
+  font-family: neon;
+  color: $c-salmon;
+  font-size: $s-xxl;
+  text-shadow: 0 0 $s-l #F40A35;
+  animation: neon 1s ease infinite;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #FA1C16, 0 0 .2vw #FED128;
+  }
+  50% {
+    text-shadow: 0 0 1.5vw #800E0B,0 0 .2vw #800E0B;
+  }
+}
+
 @keyframes moveDown {
   0% {
     transform: translateY(0px) scale(1.2);

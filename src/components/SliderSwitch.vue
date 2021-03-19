@@ -24,7 +24,9 @@ export default {
 
 <template>
   <div class="switch" @click="$emit('press-button')">
+    <span class="text on" v-if="isActive">Stop</span>
     <span :class="['slider', isActive && 'active', isRound && 'round']" />
+    <span class="text off" v-if="!isActive">Start</span>
   </div>
 </template>
 
@@ -45,6 +47,7 @@ $slider-size: 60px;
     position: absolute;
     bottom: $slider-distance;
     left: $slider-distance;
+    z-index: $z-highlight;
     width: ($slider-size / 2) - $slider-distance;
     height: ($slider-size / 2) - $slider-distance;
     content: '';
@@ -73,6 +76,25 @@ $slider-size: 60px;
   border-radius: ($slider-size / 2) + $slider-distance;
   &::before {
     border-radius: 50%;
+  }
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  z-index: $z-page;
+  transform: translateY(-50%);
+  font-size: $s-m;
+  font-weight: bold;
+  text-shadow: 0px 0px 2px $c-black;
+  &.on {
+    right: unset;
+    left: $s-xs;
+    // color: $c-cod-gray;
+  }
+  &.off {
+    right: $s-xxs;
+    left: unset;
   }
 }
 </style>

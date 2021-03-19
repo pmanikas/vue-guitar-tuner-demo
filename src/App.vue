@@ -1,15 +1,18 @@
 <script>
 import soundServiceCreator from '@/services/sound.service'
+import Nav from './components/Nav'
 import Tuner from './components/Tuner'
-import SliderSwitch from './components/SliderSwitch'
+import Footer from './components/Footer'
+import '@rocktimsaikia/github-card'
 
 const soundService = soundServiceCreator()
 
 export default {
   name: 'App',
   components: {
-    SliderSwitch,
-    Tuner
+    Nav,
+    Tuner,
+    Footer,
   },
   data () {
     return {
@@ -17,7 +20,7 @@ export default {
       pitch: null,
       note: null,
       detune: null,
-      isPlaying: false
+      isTunerActive: false
     }
   },
   mounted () {
@@ -25,12 +28,15 @@ export default {
       this.setResults(val)
     })
     soundService.on('statusUpdate', val => {
-      this.isPlaying = val
+      this.isTunerActive = val
     })
+     let externalScript = document.createElement('script')
+    externalScript.setAttribute('src', 'cdn.jsdelivr.net/github-cards/latest/widget.js')
+    document.head.appendChild(externalScript)
   },
   methods: {
     toggleInputHandler () {
-      if (this.isPlaying) {
+      if (this.isTunerActive) {
         this.soundService.stop()
       } else {
         this.soundService.start()
@@ -54,13 +60,24 @@ export default {
 <template>
   <div class="container">
     <header>
-      <nav>LOGO</nav>
+      <Nav
+        @toggle-input="toggleInputHandler"
+        :isTunerActive="isTunerActive"
+      />
     </header>
     <main>
-      <Tuner :pitch="pitch" :note="note" :detune="detune" :isPlaying="isPlaying" />
-      <SliderSwitch class="switch" :isActive="isPlaying" @press-button="toggleInputHandler" />
+      <h1 class="title">ONLINE GUITAR TUNER</h1>
+      <Tuner
+        :pitch="pitch"
+        :note="note"
+        :detune="detune"
+        :isTunerActive="isTunerActive"
+      />
+      <div class="githubCard">
+        <github-card data-user="pmanikas" data-theme="dark"></github-card>
+      </div>
     </main>
-    <footer>FOOTER</footer>
+    <Footer />
   </div>
 </template>
 
@@ -69,16 +86,28 @@ export default {
 
 .container {
   position: relative;
-  width: $tuning-area-size;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
 }
 
-.switch {
-  position: absolute;
-  top: $s-xl;
-  right: $s-xl;
-  opacity: 0.5;
+.title {
+  text-align: center;
+  color: $c-silver;
+  margin-top: $s-xl;
+}
+
+.githubCard {
+  width: 380px;
+  margin: $s-xxxl auto 0;
+  text-align: center;
+  opacity: 0.7;
+}
+
+@include desktop {
+  .githubCard {
+    transition: opacity .3s ease-out;
+    opacity: 0.3;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 }
 </style>

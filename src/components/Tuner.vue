@@ -26,7 +26,7 @@ export default {
       type: Number,
       default: null
     },
-    isPlaying: {
+    isTunerActive: {
       type: Boolean,
       default: false
     }
@@ -36,9 +36,9 @@ export default {
 
 <template>
   <div class="tuningArea">
-    <div :class="['gridOverlay', { play: isPlaying }]"></div>
+    <div :class="['gridOverlay', { play: isTunerActive }]"></div>
     <div class="referenceLine"></div>
-    <div class="note">{{ note ? notes[note % 12] : '' }}</div>
+    <div class="note">{{ note ? notes[note % 12] : '--' }}</div>
     <Detune :detune="detune" class="detuneArea" />
   </div>
 </template>
@@ -48,6 +48,7 @@ export default {
 
 .tuningArea {
   position: relative;
+  top: $s-xl;
   width: 100%;
   height: $tuning-area-size;
 }
@@ -56,7 +57,6 @@ export default {
   @include center;
   width: 100%;
   height: 100%;
-  box-shadow: inset 0 0 45px $c-cod-gray;
   overflow: hidden;
   &.play::before {
     animation-play-state: running;
@@ -65,11 +65,14 @@ export default {
     @include fill;
     display: inline-block;
     content: '';
-    width: $tuning-area-size;
+    width: 100%;
     height: $tuning-area-size;
-    background-image: repeating-linear-gradient($c-white -1px 1px, transparent 1px 100%),
+    background: $c-san-juan-blue;
+    background-image:
+      repeating-linear-gradient($c-white -1px 1px, transparent 1px 100%),
       repeating-linear-gradient(90deg, $c-white -1px 1px, transparent 1px 100%);
     background-size: ($tuning-area-size / 20) ($tuning-area-size / 20);
+    background-position: center center;
     opacity: 0.15;
     animation: moveDown 0.3s infinite linear;
     animation-play-state: paused;
@@ -77,7 +80,10 @@ export default {
   &::after {
     @include fill;
     content: '';
-    background-image: radial-gradient(transparent, transparent, transparent, $c-cod-gray 90%, $c-cod-gray 100%);
+    background-image:
+    radial-gradient(transparent, transparent, transparent, $c-cod-gray 90%, $c-cod-gray 100%),
+    linear-gradient(to left, transparent 90%, $c-cod-gray 100%),
+    linear-gradient(to right, transparent 90%, $c-cod-gray 100%);
   }
 }
 
@@ -85,6 +91,7 @@ export default {
   position: absolute;
   top: 0;
   left: 50%;
+  z-index: $z-minus;
   width: 1px;
   height: 100%;
   background: $c-salmon;
@@ -94,12 +101,32 @@ export default {
 
 .note {
   font-size: $s-xxxl;
+  text-align: center;
 }
 
 .detuneArea {
   position: absolute;
   bottom: $s-l;
   left: 0;
-  width: 100%;
+  right: 0;
+  width: $tuning-area-size;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@include desktop {
+  .detuneArea {
+    width: 770px;
+  }
+  .gridOverlay {
+    &::after {
+      @include fill;
+      content: '';
+      background-image:
+      // radial-gradient(transparent, transparent, transparent, $c-cod-gray 90%, $c-cod-gray 100%),
+      linear-gradient(to top, transparent 90%, $c-cod-gray 100%),
+      linear-gradient(to bottom, transparent 90%, $c-cod-gray 100%);
+    }
+  }
 }
 </style>

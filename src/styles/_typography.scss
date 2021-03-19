@@ -1,3 +1,8 @@
+@font-face {
+  font-family: neon;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
 html {
   font-size: percentage(7 / 16);
   letter-spacing: 0;
@@ -88,9 +93,4 @@ footer {
 
 figcaption p {
   max-width: 30em;
-}
-
-h1,
-h2 {
-  max-width: 9em;
 }

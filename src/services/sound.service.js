@@ -8,7 +8,7 @@ export default () => {
   let analyser = null
   let mediaStreamSource = null
   let stream = null
-  let isPlaying = false
+  let isTunerActive = false
 
   const on = (event, arg) => {
     events.on(event, arg)
@@ -80,8 +80,8 @@ export default () => {
       track.stop()
     })
     stream = null
-    isPlaying = false
-    emitStatusUpdate(isPlaying)
+    isTunerActive = false
+    emitStatusUpdate(isTunerActive)
   }
 
   const start = () => {
@@ -105,8 +105,8 @@ export default () => {
         optional: []
       }
     }).then(() => {
-      isPlaying = true
-      emitStatusUpdate(isPlaying)
+      isTunerActive = true
+      emitStatusUpdate(isTunerActive)
     })
   }
 

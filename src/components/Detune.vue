@@ -12,14 +12,14 @@ export default {
 
 <template>
   <div class="detune">
-    <span>&#9837;</span>
-    <span
-      :class="['detuneTip', Math.abs(detune) < 5 ? 'tuned' : 'outOfTune']"
-      :style="{ transform: `translateX(${detune * 2 || 0}px)` }"
+    <div>&#9837;</div>
+    <div
+      :class="['detuneTip', detune !== null && (Math.abs(detune) < 5 ? 'tuned' : 'outOfTune')]"
+      :style="{ transform: `translateX(${detune * 4 || 0}px)` }"
     >
-      {{ detune }}
-    </span>
-    <span>&#9839;</span>
+      <span class="detuneValue">{{ detune || '--' }}</span>
+    </div>
+    <div>&#9839;</div>
   </div>
 </template>
 
@@ -28,7 +28,6 @@ export default {
 
 .detune {
   display: flex;
-  width: 50%;
   align-items: center;
   justify-content: space-around;
   color: $c-silver;
@@ -36,37 +35,44 @@ export default {
 
 .detuneTip {
   position: relative;
-  z-index: $z-highlight;
+  bottom: $s-xl;
+  height: 50px;
+  width: 50px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: $s-xl;
-  height: $s-xl;
-  margin-top: -#{$s-xxxl};
-  background: $c-silver;
-  border: 2px solid $c-silver;
-  border-radius: 50%;
-  transition: transform 0.6s linear;
-  color: $c-cod-gray;
-  &.tuned {
-    background: $c-snowy-mint;
+  transition: transform 0.3s linear;
+  &.tuned::before {
+    background: $c-eastern-snow-gradient;
   }
-  &.outOfTune {
+  &.outOfTune::before {
     background: $c-salmon;
   }
   &::before {
     position: absolute;
-    top: $s-xl - 0.5;
+    bottom: 0;
     right: 0;
     left: 0;
-    z-index: $z-page;
     content: '';
-    width: 0;
-    height: 0;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
-    border-left: $s-xl / 4 solid transparent;
-    border-right: $s-xl / 4 solid transparent;
-    border-top: $s-xl / 1.5 solid $c-silver;
+    background: $c-dove-gray;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50% 100%;
+    border-bottom-right-radius: 2.5px;
+    border-bottom-left-radius: 100% 50%;
+    transform: rotate(45deg);
+    opacity: 0.8;
+    box-shadow: $s-m 0 $s-m $c-cod-gray;
   }
+}
+
+.detuneValue {
+  position: relative;
+  z-index: $z-highlight;
+  padding-top: $s-s;
+  color: $c-white;
+  font-weight: bold;
+  font-size: $s-l;
 }
 </style>
