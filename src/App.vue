@@ -1,30 +1,87 @@
+<script>
+import soundServiceCreator from '@/services/sound.service';
+import Tuner from './components/Tuner.vue';
+import SliderSwitch from './components/SliderSwitch.vue';
+
+const soundService = soundServiceCreator();
+
+export default {
+  name: 'App',
+  components: {
+    SliderSwitch,
+    Tuner,
+  },
+  data() {
+    return {
+      soundService,
+      pitch: null,
+      note: null,
+      detune: null,
+      isPlaying: false,
+    };
+  },
+  mounted() {
+    soundService.on('acUpdate', (val) => {
+      this.setResults(val);
+    });
+    soundService.on('statusUpdate', (val) => {
+      this.isPlaying = val;
+    });
+  },
+  methods: {
+    toggleInputHandler() {
+      if (this.isPlaying) {
+        this.soundService.stop();
+      } else {
+        this.soundService.start();
+      }
+    },
+    setResults(ac) {
+      if (ac === -1) {
+        this.pitch = null;
+        this.note = null;
+        this.detune = null;
+      } else {
+        this.pitch = Math.round(ac);
+        this.note = soundService.noteFromPitch(this.pitch);
+        this.detune = soundService.centsOffFromPitch(this.pitch, this.note);
+      }
+    },
+  },
+};
+</script>
+
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="container">
+    <header>
+      <nav>LOGO</nav>
+    </header>
+    <main>
+        <Tuner :pitch='pitch' :note='note' :detune='detune' :isPlaying='isPlaying' />
+        <SliderSwitch class="switch" :isActive="isPlaying" @press-button="toggleInputHandler" />
+    </main>
+    <footer>FOOTER</footer>
   </div>
-  <router-view/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="scss" scoped>
+@import "./styles/design";
+
+$tuning-area-size: 400px;
+
+.container {
+  position: relative;
+  width: $tuning-area-size;
+  min-height: 100vh;
+  margin: 0 auto;
   text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.switch {
+  position: absolute;
+  top: $s-xl;
+  right: $s-xl;
+  opacity: 0.5;
 }
+
 </style>

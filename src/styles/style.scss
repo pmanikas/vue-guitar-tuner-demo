@@ -1,0 +1,30 @@
+@import "./design";
+@import "./reset";
+@import "./typography";
+
+* {
+  scrollbar-color: transparentize($c-dusty-gray, 0.5) transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparentize($c-dusty-gray, 0.5);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: $base-radius;
+  border: transparent;
+}
+
+body {
+  background: $c-cod-gray;
+  color: $c-silver;
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0px) scale(1.2);
+  }
+  100% {
+    transform: translateY(-24px) scale(1.2);
+  }
+}
