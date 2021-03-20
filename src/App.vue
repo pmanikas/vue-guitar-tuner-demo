@@ -30,9 +30,6 @@ export default {
     soundService.on('statusUpdate', val => {
       this.isTunerActive = val
     })
-     let externalScript = document.createElement('script')
-    externalScript.setAttribute('src', 'cdn.jsdelivr.net/github-cards/latest/widget.js')
-    document.head.appendChild(externalScript)
   },
   methods: {
     toggleInputHandler () {
