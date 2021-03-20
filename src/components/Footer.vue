@@ -1,6 +1,5 @@
 <script>
 import Logo from './Logo'
-import SliderSwitch from './SliderSwitch'
 import footerBg from './../assets/images/anime-girl-with-guitar-watching-the-sunset.png';
 
 export default {
@@ -16,7 +15,7 @@ export default {
       default: false,
     },
   },
-  components: { Logo, SliderSwitch },
+  components: { Logo },
 }
 </script>
 
@@ -43,7 +42,6 @@ export default {
   bottom: $s-s;
   width: 100%;
   text-align: center;
-  color: $c-silver;
   font-size: 2rem;
   a {
     color: $c-silver;
@@ -53,9 +51,5 @@ export default {
 
 .background {
   width: 100%;
-}
-
-@include desktop {
-
 }
 </style>

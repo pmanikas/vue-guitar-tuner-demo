@@ -63,7 +63,7 @@ export default {
       />
     </header>
     <main>
-      <h1 class="title">ONLINE GUITAR TUNER</h1>
+      <h1 class="title">GUITAR TUNER</h1>
       <Tuner
         :pitch="pitch"
         :note="note"
@@ -86,13 +86,20 @@ export default {
 }
 
 .title {
+  position: absolute;
+  top: 25vh;
+  left: 50%;
+  z-index: $z-minus;
+  transform: translate(-50%);
   text-align: center;
-  color: $c-silver;
-  margin-top: $s-xl;
+  font-size: 7rem;
+  opacity: 0.1;
+  text-shadow: 1px 1px $c-silver, -1px -1px $c-cod-gray;
 }
 
 .githubCard {
   width: 380px;
+  max-width: 100%;
   margin: $s-xxxl auto 0;
   text-align: center;
   opacity: 0.7;

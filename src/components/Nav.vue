@@ -1,6 +1,6 @@
 <script>
 import Logo from './Logo'
-import SliderSwitch from './SliderSwitch'
+import NavButton from './NavButton'
 
 export default {
   name: 'Nav',
@@ -10,14 +10,14 @@ export default {
       default: false,
     },
   },
-  components: { Logo, SliderSwitch },
+  components: { Logo, NavButton },
 }
 </script>
 
 <template>
   <nav class="navContainer">
     <Logo />
-    <SliderSwitch
+    <NavButton
       :is-active="isTunerActive"
       @press-button="$emit('toggleInput')"
     />
@@ -28,18 +28,15 @@ export default {
 @import './../styles/design';
 
 .navContainer {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z-highlight;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: $s-nav-height;
-  padding: 0 $s-xl;
-  &::before {
-    @include fill;
-    content: '';
-    opacity: 0.2;
-    background: $c-san-juan-blue;
-  }
+  width: 100%;
+  padding: $s-l $s-xxl;
 }
 
 @include desktop {

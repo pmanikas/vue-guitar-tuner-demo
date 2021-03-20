@@ -30,12 +30,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  color: $c-silver;
 }
 
 .detuneTip {
   position: relative;
-  bottom: $s-xl;
+  bottom: $s-xxl;
   height: 50px;
   width: 50px;
   display: flex;
@@ -45,7 +44,7 @@ export default {
     background: $c-eastern-snow-gradient;
   }
   &.outOfTune::before {
-    background: $c-salmon;
+    background: $c-passion-gradient;
   }
   &::before {
     position: absolute;
@@ -71,7 +70,6 @@ export default {
   position: relative;
   z-index: $z-highlight;
   padding-top: $s-s;
-  color: $c-white;
   font-weight: bold;
   font-size: $s-l;
 }

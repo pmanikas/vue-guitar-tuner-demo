@@ -38,8 +38,10 @@ export default {
   <div class="tuningArea">
     <div :class="['gridOverlay', { play: isTunerActive }]"></div>
     <div class="referenceLine"></div>
-    <div class="note">{{ note ? notes[note % 12] : '--' }}</div>
-    <Detune :detune="detune" class="detuneArea" />
+    <div class="detuneArea">
+      <div class="note">{{ note ? notes[note % 12] : '--' }}</div>
+      <Detune :detune="detune" class="detuneArea" />
+    </div>
   </div>
 </template>
 
@@ -48,9 +50,10 @@ export default {
 
 .tuningArea {
   position: relative;
-  top: $s-xl;
   width: 100%;
   height: $tuning-area-size;
+  min-height: calc(100vh - 75px);
+  max-height: 100vh;
 }
 
 .gridOverlay {
@@ -74,14 +77,13 @@ export default {
     background-size: ($tuning-area-size / 20) ($tuning-area-size / 20);
     background-position: center center;
     opacity: 0.15;
-    animation: moveDown 0.3s infinite linear;
+    animation: moveDown 0.5s infinite linear;
     animation-play-state: paused;
   }
   &::after {
     @include fill;
     content: '';
     background-image:
-    radial-gradient(transparent, transparent, transparent, $c-cod-gray 90%, $c-cod-gray 100%),
     linear-gradient(to left, transparent 90%, $c-cod-gray 100%),
     linear-gradient(to right, transparent 90%, $c-cod-gray 100%);
   }
@@ -94,7 +96,7 @@ export default {
   z-index: $z-minus;
   width: 1px;
   height: 100%;
-  background: $c-salmon;
+  background: $c-cinnabar;
   transform: translateX(-50%);
   opacity: 0.4;
 }
@@ -102,6 +104,7 @@ export default {
 .note {
   font-size: $s-xxxl;
   text-align: center;
+  margin-bottom: $s-xxl * 4;
 }
 
 .detuneArea {
@@ -116,14 +119,15 @@ export default {
 
 @include desktop {
   .detuneArea {
-    width: 770px;
+    width: $tuning-area-size * 1.5;
   }
   .gridOverlay {
     &::after {
       @include fill;
       content: '';
       background-image:
-      // radial-gradient(transparent, transparent, transparent, $c-cod-gray 90%, $c-cod-gray 100%),
+      linear-gradient(to left, transparent 90%, $c-cod-gray 100%),
+      linear-gradient(to right, transparent 90%, $c-cod-gray 100%),
       linear-gradient(to top, transparent 90%, $c-cod-gray 100%),
       linear-gradient(to bottom, transparent 90%, $c-cod-gray 100%);
     }
