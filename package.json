@@ -10,6 +10,7 @@
     "predeploy": "PUBLIC_URL=https://pmanikas.github.io/guitar-tuner npm run build"
   },
   "dependencies": {
+    "@mohayonao/web-audio-api-shim": "^0.3.0",
     "@rocktimsaikia/github-card": "^2.1.1",
     "component-emitter": "^1.3.0",
     "core-js": "^3.6.5",

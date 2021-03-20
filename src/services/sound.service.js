@@ -1,5 +1,6 @@
 import Emitter from 'component-emitter'
 import { autoCorrelate } from '../algorithms/autoCorrelate'
+require('@mohayonao/web-audio-api-shim/light')
 
 export default () => {
   const events = Emitter({})
@@ -66,10 +67,12 @@ export default () => {
     updatePitch()
   }
 
-  const getUserMedia = async dictionary => {
+  const getUserMedia = async () => {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true })
     try {
-      stream = await navigator.mediaDevices.getUserMedia(dictionary)
       createStreamAudio(stream)
+      isTunerActive = true
+      emitStatusUpdate(isTunerActive)
     } catch (e) {
       errorHandler(`getUserMedia threw exception :${e}`)
     }
@@ -94,20 +97,7 @@ export default () => {
       )
       return
     }
-    getUserMedia({
-      audio: {
-        mandatory: {
-          googEchoCancellation: 'false',
-          googAutoGainControl: 'true',
-          googNoiseSuppression: 'false',
-          googHighpassFilter: 'false'
-        },
-        optional: []
-      }
-    }).then(() => {
-      isTunerActive = true
-      emitStatusUpdate(isTunerActive)
-    })
+    getUserMedia()
   }
 
   return {
