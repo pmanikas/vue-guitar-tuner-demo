@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "89a275f6a078ffbb5daf",
-    "url": "/guitar-tuner/css/app.44459851.css"
+    "revision": "165cd30b4bc5d8c9935f",
+    "url": "/guitar-tuner/css/app.fa92ff71.css"
   },
   {
     "revision": "237900c251913959bb312925fab25b55",
@@ -36,16 +36,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/guitar-tuner/img/anime-girl-with-guitar-watching-the-sunset.786962a8.png"
   },
   {
-    "revision": "7be846a53acba09c62609484d595925b",
+    "revision": "d81e693a52506c20e43a30f3b01e4e1e",
     "url": "/guitar-tuner/index.html"
   },
   {
-    "revision": "89a275f6a078ffbb5daf",
-    "url": "/guitar-tuner/js/app.ce485975.js"
+    "revision": "165cd30b4bc5d8c9935f",
+    "url": "/guitar-tuner/js/app.cc3551fa.js"
   },
   {
-    "revision": "19c9e6348eda8f79663b",
-    "url": "/guitar-tuner/js/chunk-vendors.63f59df2.js"
+    "revision": "a4b10e95aa233b6193b2",
+    "url": "/guitar-tuner/js/chunk-vendors.b82182d0.js"
   },
   {
     "revision": "cf2451c999b91effe70628f51b81a9ba",
