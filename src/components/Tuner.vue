@@ -69,7 +69,7 @@ export default {
     display: inline-block;
     content: '';
     width: 100%;
-    height: $tuning-area-size;
+    height: 100%;
     background: $c-san-juan-blue;
     background-image:
       repeating-linear-gradient($c-white -1px 1px, transparent 1px 100%),
