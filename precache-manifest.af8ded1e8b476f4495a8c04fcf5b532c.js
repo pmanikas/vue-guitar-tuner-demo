@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "00aa98e5b033f69b00d7",
-    "url": "/guitar-tuner/css/app.fa92ff71.css"
+    "revision": "c81b08ff202d130b5078",
+    "url": "/guitar-tuner/css/app.ee36864e.css"
   },
   {
     "revision": "237900c251913959bb312925fab25b55",
@@ -36,12 +36,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/guitar-tuner/img/anime-girl-with-guitar-watching-the-sunset.786962a8.png"
   },
   {
-    "revision": "fb4dd696610d513b926c5ea94e70febb",
+    "revision": "4aca77e134ddc21ddef9b07266746010",
     "url": "/guitar-tuner/index.html"
   },
   {
-    "revision": "00aa98e5b033f69b00d7",
-    "url": "/guitar-tuner/js/app.1ff37665.js"
+    "revision": "c81b08ff202d130b5078",
+    "url": "/guitar-tuner/js/app.93659ef2.js"
   },
   {
     "revision": "8219789d258e7a0aa58e",
