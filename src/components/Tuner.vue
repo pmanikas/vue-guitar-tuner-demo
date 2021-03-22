@@ -51,9 +51,7 @@ export default {
 .tuningArea {
   position: relative;
   width: 100%;
-  height: $tuning-area-size;
-  min-height: calc(100vh - 75px);
-  max-height: 100vh;
+  min-height: 100vh;
 }
 
 .gridOverlay {
