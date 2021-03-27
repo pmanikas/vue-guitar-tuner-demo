@@ -1,54 +1,26 @@
 <script>
-import soundServiceCreator from '@/services/sound.service'
 import Nav from './components/Nav'
-import Tuner from './components/Tuner'
+import GuitarTuner from "vue-guitar-tuner/dist/vue-guitar-tuner.common";
+import GithubCard from "./components/GithubCard";
 import Footer from './components/Footer'
-import '@rocktimsaikia/github-card'
-
-const soundService = soundServiceCreator()
+import("vue-guitar-tuner/dist/vue-guitar-tuner.css");
 
 export default {
   name: 'App',
   components: {
     Nav,
-    Tuner,
     Footer,
+    GithubCard,
+    GuitarTuner,
   },
   data () {
     return {
-      soundService,
-      pitch: null,
-      note: null,
-      detune: null,
       isTunerActive: false
     }
   },
-  mounted () {
-    soundService.on('acUpdate', val => {
-      this.setResults(val)
-    })
-    soundService.on('statusUpdate', val => {
-      this.isTunerActive = val
-    })
-  },
   methods: {
-    toggleInputHandler () {
-      if (this.isTunerActive) {
-        this.soundService.stop()
-      } else {
-        this.soundService.start()
-      }
-    },
-    setResults (ac) {
-      if (ac === -1) {
-        this.pitch = null
-        this.note = null
-        this.detune = null
-      } else {
-        this.pitch = Math.round(ac)
-        this.note = soundService.noteFromPitch(this.pitch)
-        this.detune = soundService.centsOffFromPitch(this.pitch, this.note)
-      }
+    statusUpdate(status) {
+      this.isTunerActive = status
     }
   }
 }
@@ -58,21 +30,15 @@ export default {
   <div class="container">
     <header>
       <Nav
-        @toggle-input="toggleInputHandler"
+        @toggleInput="$root.$toggleGuitarTuner()"
         :isTunerActive="isTunerActive"
       />
     </header>
     <main>
       <h1 class="title">GUITAR TUNER</h1>
-      <Tuner
-        :pitch="pitch"
-        :note="note"
-        :detune="detune"
-        :isTunerActive="isTunerActive"
-      />
-      <div class="githubCard">
-        <github-card data-user="pmanikas" data-theme="dark"></github-card>
-      </div>
+      <GuitarTuner class="tuner" @statusUpdate="statusUpdate" />
+      <h2 class="developerTitle">About Developer</h2>
+      <GithubCard username="pmanikas" />
     </main>
     <Footer />
   </div>
@@ -83,6 +49,12 @@ export default {
 
 .container {
   position: relative;
+}
+
+.tuner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .title {
@@ -97,21 +69,12 @@ export default {
   text-shadow: 1px 1px $c-silver, -1px -1px $c-cod-gray;
 }
 
-.githubCard {
-  width: 380px;
-  max-width: 100%;
-  margin: $s-xxxl auto 0;
+.developerTitle {
+  margin: $s-xxxl auto $s-xl;
   text-align: center;
-  opacity: 0.7;
 }
 
-@include desktop {
-  .githubCard {
-    transition: opacity .3s ease-out;
-    opacity: 0.3;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
+.githubCard {
+  margin: 0 auto $s-xxxl;
 }
 </style>
