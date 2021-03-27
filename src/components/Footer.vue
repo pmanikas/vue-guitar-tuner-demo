@@ -1,5 +1,4 @@
 <script>
-import Logo from './Logo'
 import footerBg from './../assets/images/anime-girl-with-guitar-watching-the-sunset.png';
 
 export default {
@@ -15,7 +14,6 @@ export default {
       default: false,
     },
   },
-  components: { Logo },
 }
 </script>
 
