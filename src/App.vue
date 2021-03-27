@@ -1,6 +1,6 @@
 <script>
 import Nav from './components/Nav'
-import GuitarTuner from "vue-guitar-tuner/dist/vue-guitar-tuner.common";
+import GuitarTuner from "vue-guitar-tuner";
 import GithubCard from "./components/GithubCard";
 import Footer from './components/Footer'
 import("vue-guitar-tuner/dist/vue-guitar-tuner.css");
