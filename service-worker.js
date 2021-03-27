@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/guitar-tuner/precache-manifest.6ef6cf5dbed52a257950eef983f9e479.js"
+  "/vue-guitar-tuner-demo/precache-manifest.e7e87cd5ef2ad900fd9476b49acce5aa.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "vue-chords-detector"});
+workbox.core.setCacheNameDetails({prefix: "vue-guitar-tuner-demo"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
