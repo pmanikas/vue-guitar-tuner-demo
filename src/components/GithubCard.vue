@@ -49,11 +49,11 @@ export default {
       <div class="metricsContainer">
         <div class="metricsItem followers">
           {{ user.followers }}
-          <label>Folowers</label>
+          <label>Followers</label>
         </div>
         <div class="metricsItem following">
           {{ user.following }}
-          <label>Folowers</label>
+          <label>Following</label>
         </div>
         <div class="metricsItem repositories">
           {{ user.public_repos }}
