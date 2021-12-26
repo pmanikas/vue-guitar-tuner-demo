@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/vue-guitar-tuner-demo/precache-manifest.e7e87cd5ef2ad900fd9476b49acce5aa.js"
+  "/vue-guitar-tuner-demo/precache-manifest.9a67e379f5cf8c94ef74f9bee9d48c62.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-guitar-tuner-demo"});
