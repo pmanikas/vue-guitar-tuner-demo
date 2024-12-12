@@ -1,8 +1,8 @@
 <script>
-import Nav from './components/Nav'
+import Nav from './components/Nav';
 import GuitarTuner from "vue-guitar-tuner";
 import GithubCard from "./components/GithubCard";
-import Footer from './components/Footer'
+import Footer from './components/Footer';
 import("vue-guitar-tuner/dist/vue-guitar-tuner.css");
 
 export default {
@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         statusUpdate(status) {
-            this.isTunerActive = status
+            this.isTunerActive = status;
         }
     }
 }

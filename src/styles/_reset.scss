@@ -1,32 +1,32 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scrollbar-width: thin;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
-  height: 100%;
+    width: 5px;
+    height: 100%;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
 }
 
 img::selection {
-  color: inherit;
+    color: inherit;
 }
 
 input::-webkit-slider-thumb {
-  appearance: none;
-  border: none;
+    appearance: none;
+    border: none;
 }
 
 input::-moz-range-thumb {
-  appearance: none;
-  background: transparent;
-  border: none;
+    appearance: none;
+    background: transparent;
+    border: none;
 }
 
 button,
@@ -44,13 +44,13 @@ input[type="radio"],
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button,
 input[type="search"] {
-  appearance: none;
-  border: none;
-  background-image: none;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  outline: none;
-  border-radius: 0;
+    appearance: none;
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border-radius: 0;
 }

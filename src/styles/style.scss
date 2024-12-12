@@ -3,41 +3,41 @@
 @import "./typography";
 
 * {
-  scrollbar-color: transparentize($c-dusty-gray, 0.5) transparent;
+    scrollbar-color: transparentize($c-dusty-gray, 0.5) transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: transparentize($c-dusty-gray, 0.5);
+    background-color: transparentize($c-dusty-gray, 0.5);
 }
 
 *::-webkit-scrollbar-thumb {
-  border-radius: $base-radius;
-  border: transparent;
+    border-radius: $base-radius;
+    border: transparent;
 }
 
 body {
-  background: $c-cod-gray;
-  color: $c-silver;
-  overflow-x: hidden;
+    background: $c-cod-gray;
+    color: $c-silver;
+    overflow-x: hidden;
 }
 
 .neon {
-  font-family: neon;
-  color: $c-cinnabar;
-  font-size: $s-xxl;
-  text-shadow: 0 0 $s-l lighten($c-cinnabar, 10%);
-  animation: neon 1s ease infinite;
+    font-family: neon;
+    color: $c-cinnabar;
+    font-size: $s-xxl;
+    text-shadow: 0 0 $s-l lighten($c-cinnabar, 10%);
+    animation: neon 1s ease infinite;
 }
 
 @keyframes ring {
-  0% {
-    width: 30px;
-    height: 30px;
-    opacity: 1;
-  }
-  100% {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
 }

@@ -1,15 +1,13 @@
-
 <script>
-  export default {
+export default {
     name: 'Logo',
-  }
+}
 </script>
 
 <template>
-  <div class="logo neon">G</div>
+    <div class="logo neon">G</div>
 </template>
 
 <style lang="scss" scoped>
-  @import './../styles/design';
-
+@import './../styles/design';
 </style>
